@@ -1,5 +1,5 @@
 import { Address, BigInt } from "@graphprotocol/graph-ts"
-import { LogFeeTransfer, Transfer } from "../generated/Contract/Contract"
+import { LogFeeTransfer, Transfer, Withdraw } from "../generated/Contract/Contract"
 import { Sync } from "../generated/UniV2Pool/UniV2Pool"
 import { BurntFee, Fee } from "../generated/schema"
 
@@ -24,8 +24,8 @@ export function handleLogFeeTransfer(event: LogFeeTransfer): void {
   entity.save()
 }
 
-export function handleTransfer(event: Transfer): void {
-  if(event.params.to == Address.fromString("0x000000000000000000000000000000000000dEaD") && event.params.from == Address.fromString("0x70bca57f4579f58670ab2d18ef16e02c17553c38") ){
+export function handleWithdraw(event: Withdraw): void {
+  if(event.params.token == Address.fromString("0x7d1afa7b718fb893db30a3abc0cfc608aacfebb0") && event.params.from == Address.fromString("0x70bca57f4579f58670ab2d18ef16e02c17553c38") ){
     let entity = BurntFee.load('1')
 
     if (entity == null) {
@@ -36,8 +36,8 @@ export function handleTransfer(event: Transfer): void {
       entity.maticPrice = BigInt.fromI32(0).toBigDecimal()
     }
   
-    entity.totalBurntFees = entity.totalBurntFees.plus(event.params.value.divDecimal(baseUnit))
-    entity.totalBurntFeesUSD = entity.totalBurntFeesUSD.plus(event.params.value.divDecimal(baseUnit).times(entity.maticPrice))
+    entity.totalBurntFees = entity.totalBurntFees.plus(event.params.amount.divDecimal(baseUnit))
+    entity.totalBurntFeesUSD = entity.totalBurntFeesUSD.plus(event.params.amount.divDecimal(baseUnit).times(entity.maticPrice))
   
     entity.save()
   }

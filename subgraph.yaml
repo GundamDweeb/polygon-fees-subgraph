@@ -26,8 +26,8 @@ dataSources:
       eventHandlers:
         - event: LogFeeTransfer(indexed address,indexed address,indexed address,uint256,uint256,uint256,uint256,uint256)
           handler: handleLogFeeTransfer
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
+        - event: Withdraw(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleWithdraw
       file: ./src/mapping.ts
   - kind: ethereum/contract
     name: UniV2Pool
