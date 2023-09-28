@@ -1,11 +1,11 @@
 specVersion: 0.0.5
 schema:
   file: ./schema.graphql
-features:
-  - grafting
-graft:
-  base: QmU5bLWrE2GEGL8pMjL3UDbTZx1pvYL3bZXyk6RjndNaJg
-  block: 23557301 
+# features:
+#   - grafting
+# graft:
+#   base: QmU5bLWrE2GEGL8pMjL3UDbTZx1pvYL3bZXyk6RjndNaJg
+#   block: 23557301 
 dataSources:
   - kind: ethereum/contract
     name: Contract
