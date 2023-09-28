@@ -4,3 +4,10 @@ type Fee @entity {
   totalFeesUSD: BigDecimal!
   maticPrice: BigDecimal!
 }
+
+type BurntFee @entity {
+  id: ID!
+  totalBurntFees: BigDecimal!
+  totalBurntFeesUSD: BigDecimal!
+  maticPrice: BigDecimal!
+}

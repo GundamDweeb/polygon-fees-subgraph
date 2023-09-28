@@ -4,8 +4,8 @@ schema:
 features:
   - grafting
 graft:
-  base: QmaNRUXW9g2Bo6wmcjJ2vtaae9v33sM6q4aWEfjJbc2kwU
-  block: 46896007
+  base: QmU5bLWrE2GEGL8pMjL3UDbTZx1pvYL3bZXyk6RjndNaJg
+  block: 23557301 
 dataSources:
   - kind: ethereum/contract
     name: Contract
@@ -26,6 +26,8 @@ dataSources:
       eventHandlers:
         - event: LogFeeTransfer(indexed address,indexed address,indexed address,uint256,uint256,uint256,uint256,uint256)
           handler: handleLogFeeTransfer
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
       file: ./src/mapping.ts
   - kind: ethereum/contract
     name: UniV2Pool
