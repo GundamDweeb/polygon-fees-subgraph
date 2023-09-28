@@ -52,7 +52,15 @@ export function handleQuickswapSync(event: Sync): void {
 
   entity.save()
 
-  let burnt = BurntFee.load('1')!
+  let burnt = BurntFee.load('1')
+
+  if (burnt == null) {
+    burnt = new BurntFee('1')
+
+    burnt.totalBurntFees = BigInt.fromI32(0).toBigDecimal()
+    burnt.totalBurntFeesUSD = BigInt.fromI32(0).toBigDecimal()
+    burnt.maticPrice = BigInt.fromI32(0).toBigDecimal()
+  }
 
   burnt.maticPrice = event.params.reserve1
     .times(TWELVE_DECIMALS)
